@@ -42,9 +42,120 @@ $const = new construct_deneme("ozgur"); //goruldugu gibi sadece nesne olusturuld
 $lang = new languages;
 echo  $lang->name;
 
-$banana =new banana; //fruit nesnesinden miras aldığımız metod
+$banana = new banana; //fruit nesnesinden miras aldığımız metod
 $banana->veriGir("hayriye<br>");
 echo $banana->fruit_print();
 echo $banana->info();
 echo $banana->infoTwo();
 echo "<h1>$banana->ayse</h1>";
+
+
+
+
+echo "<h2>" . fruit::$warning . "</h2>"; //static nitelikte ti özelliği nesne oluşturmadan çektik.
+echo "<h2>" . pi::$number . "</h2>";
+
+$PI = new pi;
+echo $PI->staticValue();
+
+echo "<h2> math.class.php de ki math class inin pi class indan miras aldığı static değeri bastık: " . math::$number . "</h2>";
+//STATIC ile birlikte sadece public kullanılabilir
+
+
+$math = new math();
+echo $math->mathStatic();
+
+
+
+echo "<h2>" . greet::welcome() . "</h2>"; //static functionlar nesne oluşturmadan çağrılabilir
+
+new greet(); //bir atama yapmazsak dahi __contruct çalışır.
+
+
+
+
+final class ece   //final ön eki getirilen class lar miras alınamaz
+{                  //final ön eki fonksiyon başınada yazılır. class taki gibi miras alınmaı engellenir
+    function __construct()
+    {
+        echo "ece";
+        //final ön eki getirilen class lar miras alınamaz
+    }
+}
+// class deneme extends ece{
+
+// }                           yani bu şekilde kullanım olumcul hata patlatır
+// $ece = new deneme;
+
+
+
+
+//soyut sınııflar
+$cars = new nissan("Nissan");
+echo $cars->info();
+
+
+//interface
+
+
+interface Animals
+{
+    // public $name="ece";  interface de property kullanamazsın
+     const OZGUR = "ozgur"; //interface de sabit tanımlanabilir
+    //const sadece public olarak kullanılabilir, bu fonksiyonlar içinde geçerlidir
+    public function Sound(); //abstract gibi interface dde tanımlanan fonksiyonların miras alınan sınıfta kullanımı zorunludur.
+    //arayüzler de static metod kullanılabilir
+}
+interface miras extends Animals{ //bir interface başka bir interface i miras alıyor
+  
+}
+class Cat implements miras // interface bu şekilde miras alınır. Animals yanına "," bırakıp başka interface lerde ekleyebiliriz
+{
+    public function Sound()
+    {
+        return "<br><br><h3>miyav</h3>";
+    }
+    public function Info()
+    {
+        return "<h3>ozgur-ece</h3>";
+    }
+}
+
+
+$cat = new Cat;
+echo $cat->Sound();
+echo $cat->Info();
+
+
+
+//trait kullanımı
+
+$welcome =new welcome;
+echo $welcome->PrintMe();
+echo $welcome->PrintMe2();
+echo $welcome->ekranaBas();
+echo $welcome->PrintMe2();
+echo $welcome->eceName;
+echo $welcome->BlaBla();
+
+
+//zincirleme metod kullanımı
+$calculate= new calculate(5);
+echo $calculate->sum(95)->sub(40)->div(2)->mul(4)->print();
+
+//namespace
+//namespace aynı isimli class lar oluşturup bu class ları dizin mantığıyla kullanmamızı sağlar
+//namespace ile aynı işi yapan class ları gruplarız
+require_once "classes/test.php";
+require_once "classes/test2.php";
+$test=new \members\you\test; 
+$test->message();
+
+use \members\me\test; // bu şekilde use ile namespace belirtilirse sonra ki kodlar da uzun uzun yazmak zorunda kalmayız
+$test=new test;
+$test->message();
+
+
+use \members\me\test as testing; //bu şekilde namespace e takma isim verdik
+$testing= new testing;
+$testing->message();
