@@ -1,4 +1,5 @@
 <?php
+echo"<h1>seyma test commit</h1>";
 //cookie oluşturma
 //ilk parametre cookie adı ikinci parametre değer. son kullanma tarihi verilmezse tarayıcı kapanınca cookie silinir.
 setcookie("cookie_name", "cookie value");
