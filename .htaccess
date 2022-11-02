@@ -1,0 +1,8 @@
+#tarayıcının önbelleğe almasını engelleme
+<IfModule mod_headers.c>
+Header set Content-Control "no-cache, no-store, must-revalidate"
+Header set Expires "Sun, 01 Jan 1981 01:00:00GMT"
+Header set Pragma "no-cache"
+</IfModule>
+#404 sayfasına yönlendirme
+ErrorDocument 404 http://localhost/php-oop/404/404.html

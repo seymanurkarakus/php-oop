@@ -159,3 +159,72 @@ $test->message();
 use \members\me\test as testing; //bu şekilde namespace e takma isim verdik
 $testing= new testing;
 $testing->message();
+
+
+
+//nesne kopyalama
+//clone ile kopyalarsan ikisi ayrı ayrı nesneler olur.
+
+
+//magic metods
+
+//__construct nesne belleğe yüklenirken çalışır
+
+//__destruct nesne bellekten silinirken çalışır
+
+//__call çağırılan metod mevcut değil ise fatal error dönmesi yerine __call metodu çalışır
+
+//__callStatic class ta bulunmayan bir static metod çağırıldığında çalışır. __callStatic metodu static olarak oluşturulmalıdır.
+
+//__get  nesne içinde olmayan veya erişim izni olmayan bir özelliğe(property) erişilmeye çalışıldığında çalışır.
+
+//__set nesne içinde olmayan veya erişim izni olmayan bir özelliğe(property) değer atanmaya çalışıldığında çalışır.
+
+//__isset nesne içinde olmayan veya erişim izni olmayan bir özelliğe isset veya empty fonksiyonları ile sınandığın da çalışır.
+
+//__unset nesne içinde olmayan veya erişim izni olmayan bir özelliğe unset fonksiyonu ile yok edilmeye çalışıldığın da çalışır.
+
+//__sleep nesneye serialize fonksiyonu uygulandığında çalışır
+
+//__wakeup nesneye unserialize fonksiyonu uygulandığında çalışır
+
+//__toString nesne yazdırıldığın da çalışır
+
+//__invoke nesne fonksiyon gibi çalıştırıldığın da çalışır
+
+//__clone clone ile nesne kopyalandığın da çalışır
+
+//__debugInfo nesneye var_dump fonksiyonu uyguandığın da çalışır
+
+//__set_state nesneye var_export fonksiyonu uygulandığında çalışır
+
+
+//BU MAGİC METODLAR İKİ PARAMETRE ALIR. İLK PARAMETRE METOD,ÖZELLİK İSMİNİ VERİR. İKİNCİ PARAMETRE GONDERİLMEYE ÇALIŞILAN DEĞERİ VERİR
+
+
+
+//YARARLI KOMUTLAR 
+
+defined("NUMBER"); // böyle bir sabit var mı diye bakar varsa true yoksa false doner
+
+
+//önbelleğe alınmayı engelleme
+header("Content-Control:no-cache, no-store, must-revalidate");
+header("Expires:Sun, 01 Jan 1981 01:00:00GMT");
+header("Pragma:no-cache");
+
+//header ile türkçe karakter sorunu çözme
+header("Content-Type:text/html; charset=utf-8");
+
+//url in başlık bilgilerini getirir
+$address="https://www.ozgurvrgn.xyz";
+$result=get_headers($address);
+echo"<pre>";   
+print_r($result);
+echo"</pre>";
+
+//name niteliği olan meta taglari çeker
+$result=get_meta_tags($address);
+echo"<pre>";   
+print_r($result);
+echo"</pre>";
